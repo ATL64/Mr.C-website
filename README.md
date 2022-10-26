@@ -8,6 +8,6 @@ Developed together with Alejandro de Miquel https://github.com/alejandrodemiquel
 
 
 
-![Alt text](/mrc_login.jpg?raw=true "Login")
+![Alt text](/mrc_login.png?raw=true "Login")
 
-![Alt text](/mrc_example.jpg?raw=true "App")
+![Alt text](/mrc_example.png?raw=true "App")

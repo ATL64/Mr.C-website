@@ -1,0 +1,87 @@
+<!doctype html>
+<!--
+* Mr. C - Question-Answering tool based on information from PubMed abstracts
+* @version
+* @link TBD
+* Copyright 2021-2021 The Mr.C Authors
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Sign in - Mr. C - Question-Answering tool based on information from PubMed abstracts</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V40MCTNM7K"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-V40MCTNM7K');
+    </script>
+    <!-- CSS files -->
+    <link href="./dist/css/tabler.min.css" rel="stylesheet"/>
+    <link href="./dist/css/tabler-flags.min.css" rel="stylesheet"/>
+    <link href="./dist/css/tabler-payments.min.css" rel="stylesheet"/>
+    <link href="./dist/css/tabler-vendors.min.css" rel="stylesheet"/>
+    <link href="./dist/css/demo.min.css" rel="stylesheet"/>
+  </head>
+  <body class="antialiased border-top-wide border-primary d-flex flex-column">
+    <div class="flex-fill d-flex flex-column justify-content-center py-4">
+      <div class="container-tight py-6">
+        <div class="text-center mb-4">
+          <a href="."><img src="./static/logo.png" height="90" alt=""></a>
+        </div>
+        <!--<form class="card card-md" action="." method="get" autocomplete="off">-->
+        <div class="card card-md" autocomplete="off">
+          <div class="card-body">
+            <h2 class="card-title text-center mb-4">Login to your account</h2>
+            <div class="mb-3">
+              <label class="form-label">Username</label>
+              <input class="form-control" placeholder="Enter username" id="signin-username">
+            </div>
+            <div class="mb-2">
+              <label class="form-label">Password</label>
+              <input type="password" class="form-control" placeholder="password" id="signin-password">
+            </div>
+            <div class="form-footer">
+              <button type="submit" class="btn btn-primary w-100" id="signin-button">Sign in</button>
+            </div>
+          </div>
+        </div>
+        <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script>
+          //window.location.href = 'error-maintenance.html';
+          // Script to manage cookies when signing in
+          let server_url = 'http://34.107.125.243:5000/';
+
+          $("#signin-button").on("click", function(){
+            let ajax_data = {username: $("#signin-username").val(), password: $("#signin-password").val()};
+
+            $.ajax({
+              url: server_url + "login",
+              data: ajax_data,
+              method: 'POST'
+            })
+            .done((res) => {
+              document.cookie = "mrc_username="+$("#signin-username").val()+";max-age=3600"; // 60 minutes
+              document.cookie = "mrc_password="+$("#signin-password").val()+";max-age=3600"; // 60 minutes
+              window.location.href = "/mrc.html";
+              return false;
+            })
+            .fail((err) => {
+              window.location.href = "/error-404.html";
+              return false;
+            });
+          });
+        </script>
+      </div>
+    </div>
+    <!-- Libs JS -->
+    <!-- Tabler Core -->
+    <script src="./dist/js/tabler.min.js"></script>
+  </body>
+</html>

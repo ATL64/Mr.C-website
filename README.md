@@ -1,4 +1,4 @@
-# sciencemrc
+# Mr.C Frontend for NLP application
 
 This repository contains the code of the website we used for Mr.C.
 
